@@ -24,11 +24,9 @@ namespace ConcertDB.Migrations
 
             modelBuilder.Entity("ConcertDB.DAL.Entities.Ticket", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("EntranceGate")
                         .IsRequired()
@@ -37,6 +35,9 @@ namespace ConcertDB.Migrations
 
                     b.Property<bool>("IsUsed")
                         .HasColumnType("bit");
+
+                    b.Property<int>("TickectNumber")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("UseDate")
                         .HasColumnType("datetime2");

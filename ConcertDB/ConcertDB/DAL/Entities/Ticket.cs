@@ -2,11 +2,15 @@
 
 namespace ConcertDB.DAL.Entities
 {
-    public class Ticket 
+    public class Ticket
     {
         [Key]
         [Required]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
+
+        [Required]
+        [Display(Name = "Numero de boleto:")]
+        public int TickectNumber { get; set; }
 
         [Display(Name = "Fecha de uso de la boleta:")]
         public DateTime UseDate { get; set; }

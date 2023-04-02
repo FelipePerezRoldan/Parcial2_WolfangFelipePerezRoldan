@@ -28,7 +28,7 @@ namespace ConcertDB.Controllers
         }
 
         // GET: Tickets/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.Tickets == null)
             {
@@ -56,10 +56,11 @@ namespace ConcertDB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UseDate,IsUsed,EntranceGate")] Ticket ticket)
+        public async Task<IActionResult> Create([Bind("Id,TickectNumber,UseDate,IsUsed,EntranceGate")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
+                ticket.Id = Guid.NewGuid();
                 _context.Add(ticket);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -68,7 +69,7 @@ namespace ConcertDB.Controllers
         }
 
         // GET: Tickets/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.Tickets == null)
             {
@@ -88,7 +89,7 @@ namespace ConcertDB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UseDate,IsUsed,EntranceGate")] Ticket ticket)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,TickectNumber,UseDate,IsUsed,EntranceGate")] Ticket ticket)
         {
             if (id != ticket.Id)
             {
@@ -119,7 +120,7 @@ namespace ConcertDB.Controllers
         }
 
         // GET: Tickets/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Tickets == null)
             {
@@ -139,7 +140,7 @@ namespace ConcertDB.Controllers
         // POST: Tickets/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (_context.Tickets == null)
             {
@@ -155,7 +156,7 @@ namespace ConcertDB.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TicketExists(int id)
+        private bool TicketExists(Guid id)
         {
           return (_context.Tickets?.Any(e => e.Id == id)).GetValueOrDefault();
         }
