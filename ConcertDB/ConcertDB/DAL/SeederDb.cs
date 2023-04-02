@@ -23,7 +23,7 @@ namespace ConcertDB.DAL
             {
                 for (int i = 0; i < 50000; i++)
                 {
-                    _context.Tickets.Add(new Ticket { UseDate = null, IsUsed = false, EntranceGate = null });
+                    _context.Tickets.Add(new Ticket {TickectNumber = i+1, UseDate = null, IsUsed = false, EntranceGate = null });
                 }
             }
         }
