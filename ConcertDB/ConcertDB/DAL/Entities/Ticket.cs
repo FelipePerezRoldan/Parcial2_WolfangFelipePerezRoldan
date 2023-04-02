@@ -2,15 +2,23 @@
 
 namespace ConcertDB.DAL.Entities
 {
-    public class Ticket : Entity
+    public class Ticket 
     {
-        [Display(Name = "Ticket use date.")]
+        [Key]
+        [Required]
+        [Display(Name = "Número de boleto:")]
+        public Guid Id { get; set; }
+        [Display(Name = "Fecha de creación:")]
+        public DateTime? CreatedDate { get; set; }
+        [Display(Name = "Fecha de actualización:")]
+        public DateTime? ModifiedDate { get; set; }
+        [Display(Name = "Fecha de uso de la boleta.")]
         public DateTime UseDate { get; set; }
-        [Required(ErrorMessage = "The field {0} is required.")]
-        [Display(Name = "Ticket use")]
+        [Required(ErrorMessage = "Este campo {0} es obligatorio.")]
+        [Display(Name = "La boleta fue usada:")]
         public Boolean IsUsed { get; set; }
         [Display(Name = "Entrace Gate")]
-        [MaxLength(10, ErrorMessage = "The field {0} must be shorter.")]
+        [MaxLength(10)]
         public String EntranceGate { get; set; }
     }
 }
