@@ -2,7 +2,7 @@
 
 namespace ConcertDB.DAL.Entities
 {
-    public class Tickets : Entity
+    public class Ticket : Entity
     {
         [Display(Name = "Ticket use date.")]
         public DateTime UseDate { get; set; }
