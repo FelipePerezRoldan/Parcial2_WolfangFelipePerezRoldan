@@ -8,7 +8,7 @@
 <h1>Tickets</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-outline-primary">Create New</a>
+    <a asp-action="Create" class="btn btn-outline-primary">Crear nuevo ticket</a>
 </p>
 
 
@@ -54,9 +54,9 @@
                 @Html.DisplayFor(modelItem => item.EntranceGate)
             </td>
             <td>
-                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning">Edit</a> |
-                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Delete</a>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning">Editar</a> |
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info">Detalles</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Eliminar</a>
             </td>
         </tr>
 }

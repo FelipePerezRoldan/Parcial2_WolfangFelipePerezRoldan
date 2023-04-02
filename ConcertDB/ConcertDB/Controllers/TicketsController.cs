@@ -96,7 +96,8 @@ namespace ConcertDB.Controllers
             return View(ticket);
         }
 
-        // POST: Tickets/Edit/5
+        //////////// HTTP POST - EDIT ACTION
+        // POST: Countries/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -114,22 +115,27 @@ namespace ConcertDB.Controllers
                 {
                     _context.Update(ticket);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateException dbUpdateException)
                 {
-                    if (!TicketExists(ticket.Id))
+                    if (dbUpdateException.InnerException.Message.Contains("duplicate"))
                     {
-                        return NotFound();
+                        ModelState.AddModelError(string.Empty, "Ya existe un ticket con el mismo nombre.");
                     }
                     else
                     {
-                        throw;
+                        ModelState.AddModelError(string.Empty, dbUpdateException.InnerException.Message);
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                catch (Exception exception)
+                {
+                    ModelState.AddModelError(string.Empty, exception.Message);
+                }
             }
             return View(ticket);
         }
+
 
         // GET: Tickets/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
