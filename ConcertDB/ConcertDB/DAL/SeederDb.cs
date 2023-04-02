@@ -25,6 +25,7 @@ namespace ConcertDB.DAL
                 {
                     _context.Tickets.Add(new Ticket {TickectNumber = i+1, UseDate = null, IsUsed = false, EntranceGate = null });
                 }
+                await _context.SaveChangesAsync();
             }
         }
     }
