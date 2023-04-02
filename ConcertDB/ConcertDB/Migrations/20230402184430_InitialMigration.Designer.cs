@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConcertDB.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230402170012_InitialMigration")]
+    [Migration("20230402184430_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -32,7 +32,6 @@ namespace ConcertDB.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("EntranceGate")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
@@ -42,10 +41,13 @@ namespace ConcertDB.Migrations
                     b.Property<int>("TickectNumber")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UseDate")
+                    b.Property<DateTime?>("UseDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TickectNumber")
+                        .IsUnique();
 
                     b.ToTable("Tickets");
                 });

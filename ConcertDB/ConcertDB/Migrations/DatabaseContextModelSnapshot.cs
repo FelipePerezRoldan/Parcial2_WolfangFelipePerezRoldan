@@ -29,7 +29,6 @@ namespace ConcertDB.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("EntranceGate")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
@@ -39,10 +38,13 @@ namespace ConcertDB.Migrations
                     b.Property<int>("TickectNumber")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UseDate")
+                    b.Property<DateTime?>("UseDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TickectNumber")
+                        .IsUnique();
 
                     b.ToTable("Tickets");
                 });

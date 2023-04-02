@@ -17,14 +17,20 @@ namespace ConcertDB.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     TickectNumber = table.Column<int>(type: "int", nullable: false),
-                    UseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UseDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsUsed = table.Column<bool>(type: "bit", nullable: false),
-                    EntranceGate = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false)
+                    EntranceGate = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tickets", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tickets_TickectNumber",
+                table: "Tickets",
+                column: "TickectNumber",
+                unique: true);
         }
 
         /// <inheritdoc />
